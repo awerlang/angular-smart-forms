@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../release/angular-smart-forms.js"></script>
+    <script src="controller.js"></script>
+        
+    <style>
+        input.ng-invalid {
+            border: solid 1px red;
+        }        
+    </style>
+</head>
+<body ng-controller="TestController as ctrl">
+<form name="ctrl.myForm" ng-submit="ctrl.submitForm()" novalidate wt-smart-form wt-auto-focus>
+    <h1>Hello angular-smart-forms!</h1>
+
+    <h2>What can I try?</h2>
+    <ul>
+        <li>Leave all fields empty then click Submit;</li>
+        <li>Enter 5 on numeric input;</li>
+        <li>Press ENTER on any input field;</li>
+        <li>Fill input with 5 characters</li>
+    </ul>
+
+    <hr />
+    <label for="">Text input (maxlength=5):</label>
+    <input type="text" maxlength="5" ng-model="ctrl.field0">
+
+    <hr />
+    <label for="">Number input (max=3):</label>
+    <input type="number" max="3" ng-model="ctrl.field1">
+    
+    <hr />
+    <label for="">Text input (required):</label>
+    <input type="text" required ng-model="ctrl.field2">
+    
+    <hr />
+    <label for="">Select:</label>
+    <select>
+        <option>-</option>
+        <option value="1">Item 1</option>
+        <option value="2">Item 2</option>
+    </select>
+    
+    <hr />
+    <button type="submit">Submit</button>
+
+    <pre>{{ctrl.message}}</pre>
+    <hr />
+    <pre>{{ctrl}}</pre>
+    <hr />
+    <pre>{{ctrl.myForm.$error}}</pre>
+</form>
+</body>
+
+</html>
