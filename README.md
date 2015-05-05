@@ -3,6 +3,8 @@
 Angular components for making HTML forms smart.
 Compatible with **AngularJS 1.3.4+**.
 
+[Live Demo](http://awerlang.github.io/angular-smart-forms/examples/)
+
 ## Why?
 
 HTML5 forms are getting smarter. Let's help this process.
