@@ -14,10 +14,10 @@ to handle specific requirements not yet covered by native implementations.
 
 Behaviours implemented:
 
-    * Focus first element on page load;
-    * Focus first invalid element on submit, in case it fails;
-    * Focus next element on pressing ENTER key;
-    * Focus next element on completing input an element;
+ * Focus first element on page load;
+ * Focus first invalid element on submit, in case it fails;
+ * Focus next element on pressing ENTER key;
+ * Focus next element on completing input an element;
 
 All this work is based on the following assumptions:
 
