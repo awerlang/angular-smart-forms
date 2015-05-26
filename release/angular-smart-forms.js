@@ -46,7 +46,7 @@
             }
         };
     }
-    function autoFocus($timeout) {
+    function autoFocus() {
         if (isItMobile()) return {};
         return {
             restrict: "A",
@@ -57,7 +57,6 @@
                 function setFocus(selector) {
                     var firstElement = element[0].querySelector(selector);
                     if (firstElement) {
-                        console.log(firstElement.id);
                         firstElement.focus();
                     }
                 }
@@ -70,6 +69,29 @@
             }
         };
     }
+    function isoDate() {
+        return {
+            restrict: "A",
+            require: "ngModel",
+            link: function(scope, element, attrs, ngModelCtrl) {
+                ngModelCtrl.$parsers.push(function isoDateParser(value) {
+                    console.debug("parse", typeof value, value);
+                    return value && value.toISOString().substring(0, 10) + "T00:00:00.000Z";
+                });
+                ngModelCtrl.$formatters.push(function isoDateFormatter(value) {
+                    console.debug("format", typeof value, value);
+                    if (typeof value === "string") {
+                        var regex = /(\d{4})-(\d{2})-(\d{2})T?.*/;
+                        var dateParts = regex.exec(value);
+                        if (dateParts) {
+                            return new Date(parseInt(dateParts[1], 10), parseInt(dateParts[2], 10) - 1, parseInt(dateParts[3], 10));
+                        }
+                    }
+                    return value;
+                });
+            }
+        };
+    }
     "use strict";
-    angular.module("wt.smart", []).directive("wtAutoFocus", [ "$timeout", autoFocus ]).directive("wtSmartForm", [ "$timeout", smartForm ]);
+    angular.module("wt.smart", []).directive("wtAutoFocus", [ autoFocus ]).directive("wtSmartForm", [ smartForm ]).directive("wtIsoDate", [ isoDate ]);
 })();

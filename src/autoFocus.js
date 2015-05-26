@@ -12,7 +12,6 @@ function autoFocus() {
             function setFocus(selector) {
                 var firstElement = element[0].querySelector(selector);
                 if (firstElement) {
-                    console.log(firstElement.id);
                     firstElement.focus();
                 }
             }
