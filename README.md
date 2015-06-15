@@ -17,7 +17,8 @@ Behaviours implemented:
  * Focus first element on page load;
  * Focus first invalid element on submit, in case it fails;
  * Focus next element on pressing ENTER key;
- * Focus next element on completing input an element;
+ * Focus next element on completing input on an element;
+ * Present date input with string models;
 
 All this work is based on the following assumptions:
 
@@ -26,21 +27,61 @@ All this work is based on the following assumptions:
 * By keeping *code base simple*, it is easier to reason about and evolve;
 * By fully covering with tests, it can *evolve without introducing bugs*.
 
+## Features
+
+### Components
+
+ * HTML form:
+   * Smart form: focus elements responding to keyboard input;
+   * Auto focus: focus elements responding to `$viewContentLoaded`, `$includeContentLoaded`, and `submit` events;
+ * HTML input:
+   * ISO date: store dates as a string in ISO format and display them conveniently with an `input[type=date]`;
+
+## Usage
+
+### Auto focus
+
+```html
+<form name="ctrl.mainForm" wt-auto-focus>
+...
+</form>
+```
+
+### Smart form 
+
+```html
+<form name="ctrl.mainForm" wt-smart-form>
+...
+</form>
+```
+
+### ISO dates
+
+```html
+<input type="date" wt-iso-date ng-model="ctrl.dateField">
+```
+
 ## Installation
 
 ### Bower
 
-    bower install angular-smart-forms --save
+```
+bower install angular-smart-forms --save
+```
 
 ### Application
 
 #### HTML
 
-    <script type="text/javascript" src="release/angular-smart-forms.min.js"></script>
-
+```html
+<script type="text/javascript" src="release/angular-smart-forms.min.js"></script>
+```
+    
 #### JavaScript
 
-    var app = angular.module('app', ['wt.smart']);
+```js
+var app = angular.module('app', ['wt.smart']);
+```
 
 ## License
 
