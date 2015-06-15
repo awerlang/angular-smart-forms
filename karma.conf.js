@@ -16,7 +16,8 @@ module.exports = function(config) {
       'bower_components/jasmine-jquery/lib/jasmine-jquery.js',
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'src/**/*.js',
+      'src/**/!(module).js',
+      'src/module.js',
       'tests/**/*.spec.js'
     ],
 
