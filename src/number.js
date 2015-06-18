@@ -6,6 +6,7 @@ function numberInput() {
 
             ngModelCtrl.$parsers.push(function (value) {
               if (value == null) return value;
+              if (value.trim() === '') return null;
 
               return parseToModel(value);
             });
