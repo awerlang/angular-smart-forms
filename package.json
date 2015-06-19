@@ -1,6 +1,6 @@
 {
   "name": "angular-smart-forms",
-  "version": "0.1.0",
+  "version": "0.1.1-beta.0",
   "description": "Angular components for making HTML forms smart",
   "main": "release/angular-smart-forms.js",
   "scripts": {
