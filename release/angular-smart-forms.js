@@ -96,14 +96,16 @@
     function numberInput() {
         return {
             restrict: "A",
+            priority: 1,
             require: "ngModel",
             link: function(scope, element, attrs, ngModelCtrl) {
-                ngModelCtrl.$parsers.push(function(value) {
+                element.attr("type", "text");
+                ngModelCtrl.$parsers.unshift(function(value) {
                     if (value == null) return value;
                     if (value.trim() === "") return null;
                     return parseToModel(value);
                 });
-                ngModelCtrl.$formatters.push(function(value) {
+                ngModelCtrl.$formatters.unshift(function(value) {
                     if (value == null) return value;
                     return formatWithThousandSep(value);
                 });

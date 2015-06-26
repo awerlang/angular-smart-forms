@@ -19,6 +19,7 @@ Behaviours implemented:
  * Focus next element on pressing ENTER key;
  * Focus next element on completing input on an element;
  * Present date input with string models;
+ * Present formatted numeric input;
 
 All this work is based on the following assumptions:
 
@@ -36,6 +37,7 @@ All this work is based on the following assumptions:
    * Auto focus: focus elements responding to `$viewContentLoaded`, `$includeContentLoaded`, and `submit` events;
  * HTML input:
    * ISO date: store dates as a string in ISO format and display them conveniently with an `input[type=date]`;
+   * Numeric input: display formatted number on `input[type=number]`'s 
 
 ## Usage
 
@@ -59,6 +61,12 @@ All this work is based on the following assumptions:
 
 ```html
 <input type="date" wt-iso-date ng-model="ctrl.dateField">
+```
+
+### Numeric input
+
+```html
+<input type="number" wt-number ng-model="ctrl.numericField">
 ```
 
 ## Installation

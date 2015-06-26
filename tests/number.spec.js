@@ -12,7 +12,7 @@ describe("number directive", function () {
 		scope = $rootScope.$new();
 
 		testElement = $([
-			'<input type="text" ng-model="number" wt-number>',
+			'<input type="number" ng-model="number" wt-number>',
 		].join(''));
 		testElement.appendTo(document.body);
 
