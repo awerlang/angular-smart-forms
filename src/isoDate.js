@@ -23,3 +23,10 @@ function isoDate() {
         }
     };
 }
+
+function isoDateFilter($filter) {
+  var dateFilter = $filter('date');
+  return function (date, format) {
+    return dateFilter(date, format || 'shortDate', 'UTC');
+  };
+}
