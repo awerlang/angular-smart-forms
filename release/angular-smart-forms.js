@@ -93,6 +93,12 @@
             }
         };
     }
+    function isoDateFilter($filter) {
+        var dateFilter = $filter("date");
+        return function(date, format) {
+            return dateFilter(date, format || "shortDate", "UTC");
+        };
+    }
     function numberInput() {
         return {
             restrict: "A",
@@ -189,5 +195,5 @@
         return res;
     }
     "use strict";
-    angular.module("wt.smart", []).directive("wtAutoFocus", [ autoFocus ]).directive("wtSmartForm", [ smartForm ]).directive("wtIsoDate", [ isoDate ]).directive("wtNumber", [ numberInput ]);
+    angular.module("wt.smart", []).directive("wtAutoFocus", [ autoFocus ]).directive("wtSmartForm", [ smartForm ]).directive("wtIsoDate", [ isoDate ]).filter("wtIsoDate", [ "$filter", isoDateFilter ]).directive("wtNumber", [ numberInput ]);
 })();
