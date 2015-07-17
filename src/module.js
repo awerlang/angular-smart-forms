@@ -5,4 +5,5 @@ angular.module('wt.smart', [])
     .directive('wtSmartForm', [smartForm])
     .directive('wtIsoDate', [isoDate])
     .filter('wtIsoDate', ['$filter', isoDateFilter])
-    .directive('wtNumber', [numberInput]);
+    .directive('wtNumber', [numberInput])
+    .directive('wtModelIsError', [modelIsError]);
