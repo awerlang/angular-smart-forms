@@ -194,6 +194,17 @@
         var res = intPart + decPart;
         return res;
     }
+    function modelIsError() {
+        return {
+            restrict: "A",
+            require: "ngModel",
+            link: function(scope, element, attrs, ngModelCtrl) {
+                ngModelCtrl.$validators["modelIsError"] = function(modelValue, viewValue) {
+                    return modelValue !== true;
+                };
+            }
+        };
+    }
     "use strict";
-    angular.module("wt.smart", []).directive("wtAutoFocus", [ autoFocus ]).directive("wtSmartForm", [ smartForm ]).directive("wtIsoDate", [ isoDate ]).filter("wtIsoDate", [ "$filter", isoDateFilter ]).directive("wtNumber", [ numberInput ]);
+    angular.module("wt.smart", []).directive("wtAutoFocus", [ autoFocus ]).directive("wtSmartForm", [ smartForm ]).directive("wtIsoDate", [ isoDate ]).filter("wtIsoDate", [ "$filter", isoDateFilter ]).directive("wtNumber", [ numberInput ]).directive("wtModelIsError", [ modelIsError ]);
 })();
