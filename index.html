@@ -37,11 +37,14 @@ to handle specific requirements not yet covered by native implementations.  </p>
 
 <p>Behaviours implemented:</p>
 
-<pre><code>* Focus first element on page load;
-* Focus first invalid element on submit, in case it fails;
-* Focus next element on pressing ENTER key;
-* Focus next element on completing input an element;
-</code></pre>
+<ul>
+<li>Focus first element on page load;</li>
+<li>Focus first invalid element on submit, in case it fails;</li>
+<li>Focus next element on pressing ENTER key;</li>
+<li>Focus next element on completing input on an element;</li>
+<li>Present date input with string models;</li>
+<li>Present formatted numeric input;</li>
+</ul>
 
 <p>All this work is based on the following assumptions:</p>
 
@@ -51,6 +54,56 @@ to handle specific requirements not yet covered by native implementations.  </p>
 <li>By keeping <em>code base simple</em>, it is easier to reason about and evolve;</li>
 <li>By fully covering with tests, it can <em>evolve without introducing bugs</em>.</li>
 </ul>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<h3>
+<a id="components" class="anchor" href="#components" aria-hidden="true"><span class="octicon octicon-link"></span></a>Components</h3>
+
+<ul>
+<li>HTML form:
+
+<ul>
+<li>Smart form: focus elements responding to keyboard input;</li>
+<li>Auto focus: focus elements responding to <code>$viewContentLoaded</code>, <code>$includeContentLoaded</code>, and <code>submit</code> events;</li>
+</ul>
+</li>
+<li>HTML input:
+
+<ul>
+<li>ISO date: store dates as a string in ISO format and display them conveniently with an <code>input[type=date]</code>;</li>
+<li>Numeric input: display formatted number on <code>input[type=number]</code>'s </li>
+</ul>
+</li>
+</ul>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage</h2>
+
+<h3>
+<a id="auto-focus" class="anchor" href="#auto-focus" aria-hidden="true"><span class="octicon octicon-link"></span></a>Auto focus</h3>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>ctrl.mainForm<span class="pl-pds">"</span></span> <span class="pl-e">wt-auto-focus</span>&gt;
+...
+&lt;/<span class="pl-ent">form</span>&gt;</pre></div>
+
+<h3>
+<a id="smart-form" class="anchor" href="#smart-form" aria-hidden="true"><span class="octicon octicon-link"></span></a>Smart form</h3>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">form</span> <span class="pl-e">name</span>=<span class="pl-s"><span class="pl-pds">"</span>ctrl.mainForm<span class="pl-pds">"</span></span> <span class="pl-e">wt-smart-form</span>&gt;
+...
+&lt;/<span class="pl-ent">form</span>&gt;</pre></div>
+
+<h3>
+<a id="iso-dates" class="anchor" href="#iso-dates" aria-hidden="true"><span class="octicon octicon-link"></span></a>ISO dates</h3>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>date<span class="pl-pds">"</span></span> <span class="pl-e">wt-iso-date</span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>ctrl.dateField<span class="pl-pds">"</span></span>&gt;</pre></div>
+
+<h3>
+<a id="numeric-input" class="anchor" href="#numeric-input" aria-hidden="true"><span class="octicon octicon-link"></span></a>Numeric input</h3>
+
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">input</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>number<span class="pl-pds">"</span></span> <span class="pl-e">wt-number</span> <span class="pl-e">ng-model</span>=<span class="pl-s"><span class="pl-pds">"</span>ctrl.numericField<span class="pl-pds">"</span></span>&gt;</pre></div>
 
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
@@ -67,14 +120,12 @@ to handle specific requirements not yet covered by native implementations.  </p>
 <h4>
 <a id="html" class="anchor" href="#html" aria-hidden="true"><span class="octicon octicon-link"></span></a>HTML</h4>
 
-<pre><code>&lt;script type="text/javascript" src="release/angular-smart-forms.min.js"&gt;&lt;/script&gt;
-</code></pre>
+<div class="highlight highlight-html"><pre>&lt;<span class="pl-ent">script</span> <span class="pl-e">type</span>=<span class="pl-s"><span class="pl-pds">"</span>text/javascript<span class="pl-pds">"</span></span> <span class="pl-e">src</span>=<span class="pl-s"><span class="pl-pds">"</span>release/angular-smart-forms.min.js<span class="pl-pds">"</span></span>&gt;&lt;/<span class="pl-ent">script</span>&gt;</pre></div>
 
 <h4>
 <a id="javascript" class="anchor" href="#javascript" aria-hidden="true"><span class="octicon octicon-link"></span></a>JavaScript</h4>
 
-<pre><code>var app = angular.module('app', ['wt.smart']);
-</code></pre>
+<div class="highlight highlight-js"><pre><span class="pl-k">var</span> app <span class="pl-k">=</span> angular.module(<span class="pl-s"><span class="pl-pds">'</span>app<span class="pl-pds">'</span></span>, [<span class="pl-s"><span class="pl-pds">'</span>wt.smart<span class="pl-pds">'</span></span>]);</pre></div>
 
 <h2>
 <a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
@@ -89,7 +140,17 @@ to handle specific requirements not yet covered by native implementations.  </p>
 
     </section>
 
-  
+            <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-63176420-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
   </body>
 </html>
 
