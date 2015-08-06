@@ -1,7 +1,20 @@
 // https://github.com/awerlang/angular-smart-forms
 (function() {
+    var KEYS = {
+        RETURN: 13,
+        SPACE: 32,
+        PLUS: 43,
+        COMMA: 44,
+        MINUS: 45,
+        DOT: 46
+    };
     function isItMobile() {
         return "ontouchstart" in document.documentElement && window.innerWidth < 768;
+    }
+    function find(element, selector) {
+        return angular.element(element.map(function(index, item) {
+            return item.querySelector(selector);
+        }));
     }
     function findNextTabStop(el, parent) {
         var universe = (parent || document).querySelectorAll("input, button, select, textarea, a[href]");
@@ -30,7 +43,7 @@
                     }
                 }
                 function tabOnEnter(event) {
-                    if (event.which === 13) {
+                    if (event.which === KEYS.RETURN) {
                         var el = event.target;
                         switch (el.tagName) {
                           case "INPUT":
@@ -194,6 +207,24 @@
         var res = intPart + decPart;
         return res;
     }
+    function numpadInput() {
+        return {
+            link: function(scope, element, attrs) {
+                var selector = element.attr("wt-numpad"), input = selector ? find(element, selector) : element;
+                input.attr("type", "number").addClass("wt-numpad");
+                input.on("keypress", function(event) {
+                    switch (event.which) {
+                      case KEYS.PLUS:
+                      case KEYS.COMMA:
+                      case KEYS.MINUS:
+                      case KEYS.DOT:
+                        event.preventDefault();
+                        break;
+                    }
+                });
+            }
+        };
+    }
     function modelIsError() {
         return {
             restrict: "A",
@@ -206,5 +237,5 @@
         };
     }
     "use strict";
-    angular.module("wt.smart", []).directive("wtAutoFocus", [ autoFocus ]).directive("wtSmartForm", [ smartForm ]).directive("wtIsoDate", [ isoDate ]).filter("wtIsoDate", [ "$filter", isoDateFilter ]).directive("wtNumber", [ numberInput ]).directive("wtModelIsError", [ modelIsError ]);
+    angular.module("wt.smart", []).directive("wtAutoFocus", [ autoFocus ]).directive("wtSmartForm", [ smartForm ]).directive("wtIsoDate", [ isoDate ]).filter("wtIsoDate", [ "$filter", isoDateFilter ]).directive("wtNumber", [ numberInput ]).directive("wtNumpad", [ numpadInput ]).directive("wtModelIsError", [ modelIsError ]);
 })();
