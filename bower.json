@@ -6,7 +6,7 @@
     "André Werlang"
   ],
   "description": "Angular components for making HTML forms smart",
-  "main": "release/angular-smart-forms.js",
+  "main": ["release/angular-smart-forms.js", "release/angular-smart-forms.css"],
   "keywords": [
     "angular",
     "angularjs",
