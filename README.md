@@ -37,7 +37,8 @@ All this work is based on the following assumptions:
    * Auto focus: focus elements responding to `$viewContentLoaded`, `$includeContentLoaded`, and `submit` events;
  * HTML input:
    * ISO date: store dates as a string in ISO format and display them conveniently with an `input[type=date]`;
-   * Numeric input: display formatted number on `input[type=number]`'s 
+   * Numeric input: display formatted number on `input[type=number]`'s;
+   * Numeric keyboard: request user agent to use a numeric keyboard (i.e. on mobile), and only allow typing digits;
 
 ## Usage
 
@@ -67,6 +68,18 @@ All this work is based on the following assumptions:
 
 ```html
 <input type="number" wt-number ng-model="ctrl.numericField">
+```
+
+### Numeric keyboard
+
+```html
+<input type="text" wt-numpad ng-model="ctrl.codeField">
+```
+
+```html
+<div wt-numpad=".search-box">
+  <input class="search-box" type="text" ng-model="ctrl.codeField">
+</div>
 ```
 
 ## Installation

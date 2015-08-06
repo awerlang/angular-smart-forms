@@ -12,7 +12,7 @@ function smartForm() {
                 }
             }
             function tabOnEnter(event) {
-                if (event.which === 13) {
+                if (event.which === KEYS.RETURN) {
                     var el = event.target;
                     switch (el.tagName) {
                         case "INPUT":

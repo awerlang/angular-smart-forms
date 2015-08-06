@@ -6,4 +6,5 @@ angular.module('wt.smart', [])
     .directive('wtIsoDate', [isoDate])
     .filter('wtIsoDate', ['$filter', isoDateFilter])
     .directive('wtNumber', [numberInput])
+    .directive('wtNumpad', [numpadInput])
     .directive('wtModelIsError', [modelIsError]);

@@ -4,8 +4,10 @@
   "description": "Angular components for making HTML forms smart",
   "main": "release/angular-smart-forms.js",
   "scripts": {
-    "build": "./node_modules/.bin/uglifyjs src/helpers.js src/tabstops.js src/forms.js src/autoFocus.js src/isoDate.js src/number.js src/modelIsError.js src/module.js -b -e --preamble \"// https://github.com/awerlang/angular-smart-forms\" -o release/angular-smart-forms.js",
-    "release": "./node_modules/.bin/uglifyjs src/helpers.js src/tabstops.js src/forms.js src/autoFocus.js src/isoDate.js src/number.js src/modelIsError.js src/module.js -c -e --preamble \"// https://github.com/awerlang/angular-smart-forms\" -o release/angular-smart-forms.min.js",
+    "build": "./node_modules/.bin/uglifyjs src/helpers.js src/tabstops.js src/forms.js src/autoFocus.js src/isoDate.js src/number.js src/numpad.js src/modelIsError.js src/module.js -b -e --preamble \"// https://github.com/awerlang/angular-smart-forms\" -o release/angular-smart-forms.js",
+    "release": "./node_modules/.bin/uglifyjs src/helpers.js src/tabstops.js src/forms.js src/autoFocus.js src/isoDate.js src/number.js src/numpad.js src/modelIsError.js src/module.js -c -e --preamble \"// https://github.com/awerlang/angular-smart-forms\" -o release/angular-smart-forms.min.js",
+    "css": "type src\\style.css > release\\angular-smart-forms.css",
+    "cssmin": "type src\\style.css | \"./node_modules/.bin/cleancss\" -o release\\angular-smart-forms.min.css",
     "test": "karma start"
   },
   "repository": {
@@ -29,6 +31,7 @@
   },
   "homepage": "https://github.com/awerlang/angular-smart-forms",
   "devDependencies": {
+    "clean-css": "^3.3.7",
     "conventional-changelog": "0.0.17",
     "jasmine-core": "^2.2.0",
     "karma": "^0.12.31",

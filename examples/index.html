@@ -3,6 +3,7 @@
 <head>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../release/angular-smart-forms.js"></script>
+    <link rel="stylesheet" href="../release/angular-smart-forms.css"></link>
     <script src="controller.js"></script>
         
     <style>
@@ -38,6 +39,10 @@
     <hr />
     <label for="">Number input (formatted, preloaded):</label>
     <input type="number" ng-model="ctrl.field4" wt-number ng-init="ctrl.field4 = 12345.6">
+
+    <hr />
+    <label for="">Numeric keyboard:</label>
+    <input type="text" ng-model="ctrl.field5" wt-numpad>
 
     <hr />
     <label for="">Text input (required):</label>
