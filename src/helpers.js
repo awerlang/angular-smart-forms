@@ -13,8 +13,12 @@ function isItMobile() {
     return ('ontouchstart' in document.documentElement && window.innerWidth < 768);
 }
 
+function map(array, callbackFn) {
+  return Array.prototype.map.call(array, callbackFn);
+}
+
 function find(element, selector) {
-    return angular.element(element.map(function (index, item) {
+    return angular.element(map(element, function (item) {
       return item.querySelector(selector);
     }));
 }
