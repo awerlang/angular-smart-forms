@@ -45,6 +45,10 @@
     <input type="text" ng-model="ctrl.field5" wt-numpad>
 
     <hr />
+    <label for="">Date input (ISO):</label>
+    <input type="date" ng-model="ctrl.field6" wt-iso-date> {{ ctrl.field6 | wtIsoDate }}
+
+    <hr />
     <label for="">Text input (required):</label>
     <input type="text" required ng-model="ctrl.field2">
     
