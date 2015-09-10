@@ -66,15 +66,25 @@
         if (isItMobile()) return {};
         return {
             restrict: "A",
-            link: function(scope, element) {
-                scope.$on("$viewContentLoaded", setFocusOnPartialLoaded);
-                scope.$on("$includeContentLoaded", setFocusOnPartialLoaded);
-                element.on("submit", setFocusOnFormSubmit);
-                function setFocus(selector) {
-                    var firstElement = element[0].querySelector(selector);
-                    if (firstElement) {
-                        firstElement.focus();
-                    }
+            link: function(scope, element, attrs) {
+                if (angular.isDefined(attrs["uiView"])) {
+                    scope.$on("$viewContentLoaded", setFocusOnPartialLoaded);
+                } else {
+                    scope.$on("$includeContentLoaded:focus", setFocusOnPartialIncluded);
+                }
+                if (element[0].tagName === "FORM") {
+                    element.on("submit", setFocusOnFormSubmit);
+                }
+                function setFocus(selector, sourceElement) {
+                    scope.$applyAsync(function() {
+                        var firstElement = (sourceElement || element)[0].querySelector(selector);
+                        if (firstElement) {
+                            firstElement.focus();
+                        }
+                    });
+                }
+                function setFocusOnPartialIncluded(event, data) {
+                    setFocus([ "input:not([disabled])", "select:not([disabled])", "fieldset:not([disabled]) input:not([disabled])", "fieldset:not([disabled]) select:not([disabled])" ].join(","), data.sourceElement);
                 }
                 function setFocusOnPartialLoaded() {
                     setFocus([ "input:not([disabled])", "select:not([disabled])", "fieldset:not([disabled]) input:not([disabled])", "fieldset:not([disabled]) select:not([disabled])" ].join(","));
@@ -82,6 +92,16 @@
                 function setFocusOnFormSubmit() {
                     setFocus(".ng-invalid");
                 }
+            }
+        };
+    }
+    function ngIncludeFocus() {
+        if (isItMobile()) return {};
+        return {
+            link: function(scope, element) {
+                scope.$emit("$includeContentLoaded:focus", {
+                    sourceElement: element
+                });
             }
         };
     }
@@ -129,7 +149,7 @@
                 });
                 ngModelCtrl.$formatters.unshift(function(value) {
                     if (value == null) return value;
-                    return formatWithThousandSep(value);
+                    return formatWithDecimalSep(formatWithThousandSep(value));
                 });
                 element.on("focusout", function(e) {
                     var inputVal = element.val();
@@ -139,7 +159,7 @@
                 element.on("input", function(e) {
                     var inputVal = element.val();
                     var res = formatOnInput(inputVal);
-                    if (ngModelCtrl.$viewValue === res) return;
+                    if (inputVal === res) return;
                     scope.$apply(function() {
                         ngModelCtrl.$setViewValue(res);
                         ngModelCtrl.$render();
@@ -175,7 +195,7 @@
         return parseFloat(value.replace(/\./g, "").replace(",", "."));
     }
     function formatOnInput(value) {
-        var inputVal = value;
+        var inputVal = value.trim();
         while (inputVal.charAt(0) === "0" && inputVal.charAt(0) !== ",") {
             inputVal = inputVal.substr(1);
         }
@@ -240,5 +260,5 @@
         };
     }
     "use strict";
-    angular.module("wt.smart", []).directive("wtAutoFocus", [ autoFocus ]).directive("wtSmartForm", [ smartForm ]).directive("wtIsoDate", [ isoDate ]).filter("wtIsoDate", [ "$filter", isoDateFilter ]).directive("wtNumber", [ numberInput ]).directive("wtNumpad", [ numpadInput ]).directive("wtModelIsError", [ modelIsError ]);
+    angular.module("wt.smart", []).directive("wtAutoFocus", [ autoFocus ]).directive("ngInclude", [ ngIncludeFocus ]).directive("wtSmartForm", [ smartForm ]).directive("wtIsoDate", [ isoDate ]).filter("wtIsoDate", [ "$filter", isoDateFilter ]).directive("wtNumber", [ numberInput ]).directive("wtNumpad", [ numpadInput ]).directive("wtModelIsError", [ modelIsError ]);
 })();
