@@ -15,7 +15,7 @@ function numberInput() {
             ngModelCtrl.$formatters.unshift(function (value) {
               if (value == null) return value;
 
-              return formatWithThousandSep(value);
+              return formatWithDecimalSep(formatWithThousandSep(value));
             });
             element.on('focusout', function(e) {
                 var inputVal = element.val();

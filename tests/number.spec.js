@@ -40,7 +40,7 @@ describe("number directive", function () {
 		it("as formatted string when model is defined", function () {
 			scope.number = 12345.6;
 			scope.$digest();
-			expect(testElement.val()).toEqual('12.345,67');
+			expect(testElement.val()).toEqual('12.345,60');
 		});
 	
 		it("appends 2 decimal places when model is integer value", function () {
