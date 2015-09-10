@@ -28,7 +28,7 @@ function numberInput() {
 
                 var res = formatOnInput(inputVal);
 
-                if (ngModelCtrl.$viewValue === res) return;
+                if (inputVal === res) return;
                 
                 scope.$apply(function() {
                   //element.val(res);
@@ -74,7 +74,7 @@ function parseToModel(value) {
 }
 
 function formatOnInput(value) {
-  var inputVal = value;
+  var inputVal = value.trim();
   //clearing left side zeros
   while (inputVal.charAt(0) === '0' && inputVal.charAt(0) !== ',') {
       inputVal = inputVal.substr(1);
